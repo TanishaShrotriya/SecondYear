@@ -25,6 +25,7 @@ private slots:
     void display(int dx,int dy,int e); //Bresenhems
     void input();
     int sign(int val);
+    void clear();
 };
 
 #endif // LINE_H

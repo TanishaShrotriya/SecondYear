@@ -36,7 +36,7 @@ void linestyles::display1()
 void linestyles::display(int dx,int dy)                          //for thin line
 {
     QImage *q;
-    q=new QImage (300,280,QImage::Format_ARGB32);
+    q=new QImage (1000,800,QImage::Format_ARGB32);
     QRgb value= qRgb(255,255,255);
     int steps,x,y;
     if(dx>=dy)
@@ -75,7 +75,7 @@ void linestyles::dotted(int dx,int dy)                                      //fo
     x2=this->ui->lineEdit_3->text().toInt();
     y2=this->ui->lineEdit_4->text().toInt();
 
-    QImage img(291,231,QImage::Format_ARGB32);
+    QImage img(1000,800,QImage::Format_ARGB32);
     QRgb rgb=qRgb(255,255,255);
     img.fill(QColor(Qt::black).rgb());
     int n;
@@ -118,7 +118,7 @@ void linestyles::dashed()                              //DASHED LINE
 
     int dx=abs(x1-x2);
     int dy=abs(y1-y2);
-    QImage img(291,231,QImage::Format_ARGB32);
+    QImage img(1000,800,QImage::Format_ARGB32);
     QRgb rgb=qRgb(255,255,255);
     img.fill(QColor(Qt::black).rgb());
     int n;
@@ -163,7 +163,7 @@ void linestyles::dashdot()
     //display(dx,dy);
     //int g=0;
    // display(dx,dy,g);
-    QImage img(291,231,QImage::Format_ARGB32);
+    QImage img(1000,800,QImage::Format_ARGB32);
     QRgb rgb=qRgb(255,255,255);
     img.fill(QColor(Qt::black).rgb());
     int n;
@@ -204,7 +204,7 @@ void linestyles::thick()
     int xinc,yinc;
 
     QImage *q;
-    q=new QImage(300,280,QImage::Format_ARGB32 );
+    q=new QImage(1000,800,QImage::Format_ARGB32 );
     QRgb value=qRgb(255,255,255);
 
 

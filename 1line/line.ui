@@ -6,31 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>916</width>
-    <height>664</height>
+    <width>786</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>line</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="l1">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>190</y>
-      <width>361</width>
-      <height>351</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>20</x>
       <y>0</y>
       <width>91</width>
       <height>21</height>
@@ -40,20 +27,10 @@
      <string>X coordinate</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="te4">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>100</y>
-      <width>104</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>174</x>
+      <x>194</x>
       <y>0</y>
       <width>101</width>
       <height>21</height>
@@ -63,92 +40,20 @@
      <string>Y coordinate</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="te3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>100</y>
-      <width>104</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>100</y>
-      <width>101</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Bresenhems</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>50</y>
-      <width>65</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>DDA</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="p2">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>150</y>
-      <width>97</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="te1">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>50</y>
-      <width>104</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="te2">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>190</x>
       <y>50</y>
       <width>104</width>
       <height>21</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="p1">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>150</y>
-      <width>97</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show</string>
     </property>
    </widget>
    <widget class="QLabel" name="l5">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>430</x>
       <y>200</y>
       <width>361</width>
       <height>351</height>
@@ -158,23 +63,46 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="l1">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>560</y>
-      <width>65</width>
-      <height>21</height>
+      <x>30</x>
+      <y>190</y>
+      <width>361</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="text">
-     <string>DDA</string>
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="te1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>104</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="p1">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>150</y>
+      <width>97</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>560</x>
       <y>560</y>
       <width>111</width>
       <height>31</height>
@@ -184,14 +112,86 @@
      <string>Bresenhems</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>560</y>
+      <width>65</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DDA</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="te4">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>104</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>50</y>
+      <width>65</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DDA</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="te3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>104</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>100</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bresenhems</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="p2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>150</y>
+      <width>97</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>916</width>
-     <height>27</height>
+     <width>786</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -9,6 +9,7 @@ line::line(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(this->ui->p1,SIGNAL(clicked()),this,SLOT(input()));
+     connect(this->ui->p2,SIGNAL(clicked()),this,SLOT(clear()));
 }
 
 line::~line()
@@ -110,4 +111,16 @@ int line:: sign(int val) {
         return 0 ;
     else
         return 1;
+}
+
+
+void line::clear()
+{
+    ui->l1->clear();
+    ui->l5->clear();
+    ui->te1->setText("");
+    ui->te3->setText("");
+    ui->te4->setText("");
+    ui->te2->setText(" ");
+
 }
