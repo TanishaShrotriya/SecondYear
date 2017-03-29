@@ -12,9 +12,10 @@ TARGET = widget
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        widget.cpp
+SOURCES += main.cpp \
+    widget.cpp
 
-HEADERS  += widget.h
+HEADERS  += \
+    widget.h
 
 FORMS    += widget.ui

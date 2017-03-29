@@ -51,7 +51,7 @@ void Widget::myfunct(QPainter *qp)
 {
     QPen pen(Qt::black,2,Qt::SolidLine);
     qp->setPen(pen);
-    int x1=100,y1=500,x2=400,y2=100;
+    int x1=200,y1=500,x2=400,y2=100;
 
 
                     //anti clockwise input coordinates
