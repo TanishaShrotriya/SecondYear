@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-01-19T10:23:20
+# Project created by QtCreator 2017-01-18T15:45:24
 #
 #-------------------------------------------------
 
@@ -8,13 +8,13 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = circle
+TARGET = circle1
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        circle.cpp
+        circle1.cpp
 
-HEADERS  += circle.h
+HEADERS  += circle1.h
 
-FORMS    += circle.ui
+FORMS    += circle1.ui
