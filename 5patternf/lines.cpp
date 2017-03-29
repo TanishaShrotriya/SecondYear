@@ -10,6 +10,7 @@ lines::lines(QWidget *parent) :
     ui->setupUi(this);
     connect(this->ui->p1,SIGNAL(clicked()),this,SLOT(pattern_()));
     connect(this->ui->p3,SIGNAL(clicked()),this,SLOT(pattern()));
+    connect(this->ui->p2,SIGNAL(clicked()),this,SLOT(clear()));
 }
 
 lines::~lines()
@@ -133,3 +134,12 @@ void lines::pattern() {
 }
 
 
+void lines::clear()
+{
+    ui->te1->setText("");
+    ui->te2->setText("");
+    ui->te3->setText("");
+    ui->te4->setText("");
+    ui->l1->clear();
+
+}

@@ -23,6 +23,7 @@ private slots:
     void pattern_();
     void pattern();
     void display(int x2, int y2, int x1, int y1,QImage *q, QRgb value);                     //DDA -thinline
+    void clear();
 };
 
 #endif // LINE_H
