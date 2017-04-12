@@ -26,7 +26,7 @@ section .text
 	global _start:
 	_start:
 ;--------------------------------------------------ACCEPT DISPLAY STRING1------------------------------------------------------------
-	
+here:	
         mov rax,1		;display message to monitor
 	mov rdi,1
 	mov rsi,msg1
@@ -163,7 +163,7 @@ section .text
 		  mov rdx,[len3]
 	          inc rdx			;to include 0AH
 	          syscall
-		
+	jmp here	
 	mov rax,60
 	mov rdi,0
 	syscall
