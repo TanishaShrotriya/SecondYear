@@ -19,7 +19,7 @@
 
 %macro fopen 1
 	mov	rax,2		;open
-	mov	rdi,%1	;filename
+	mov	rdi,%1	        ;filename
 	mov	rsi,2		;mode RW
 	mov	rdx,0777o	;File permissions
 	syscall

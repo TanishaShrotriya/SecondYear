@@ -26,7 +26,8 @@ section .text
 	global _start:
 	_start:
 ;--------------------------------------------------ACCEPT DISPLAY STRING1------------------------------------------------------------
-	mov rax,1		;display message to monitor
+	
+        mov rax,1		;display message to monitor
 	mov rdi,1
 	mov rsi,msg1
 	mov rdx,msglen1
