@@ -57,6 +57,7 @@ syscall
 
 %endmacro
 
+
 section .data
 	
 	fname2 db "b1.txt",00H
@@ -72,7 +73,20 @@ section .data
 	msg5len equ $-msg5
 	msg6 db "File deleted",0AH
 	msg6len equ $-msg6
+        msg7 db "Error in opening file",0AH
+        msg7len equ $-msg7
+        msg8 db "No such command exists",0AH
+        msg8len equ $-msg8
+        msg9 db "File not present,nothing to delete",0AH
+        msg9len equ $-msg9
 
+        type db "type "    
+        typelen equ $-type
+        Copy db "copy "    
+        copylen equ $-Copy
+        Del db "delete "    
+        delLen equ $-Del
+ 
 section .bss
 	
         fname1 : resb 20 
@@ -83,8 +97,6 @@ section .bss
 	 blen1   equ $-buff1       ;note: blen1 cannot exceed 512 bytes!!
 	 buff2 : resb 1024
 	 blen2   equ $-buff2
-         buff3 : resb 1024         ;resultant file buffer
-         blen3   equ $-buff3
          flen1 : resb 1
       fhandle1 : resq 1
       fhandle2 : resq 1
@@ -118,9 +130,13 @@ open:
 	input str1,20
 
 	mov esi,str1
-	mov edi,fname1	
-	add esi,5             ;leave the first 5 bytes as we give input as 'type fname '
-   
+	mov edi,type	
+        mov bl,typelen 
+        call verifyCommand
+      
+        mov edi,fname1
+      
+  
         loop:                 ;copy one string to another
 		mov al,[esi]
 		cmp al,0ah
@@ -134,10 +150,15 @@ open:
 		opn:
 			mov byte[edi],0
         fopen fname1
+        cmp rax,-1H                     ; if negative implies file does not exist
+        jle error
 	mov [fhandle1],rax              ; rax stores int value that holds the ID of file, which is dq in size
         ShowContents [fhandle1],buff1,blen1,[flen1]
         fclose fhandle1
-	jmp menu
+        jmp menu
+        error:
+               display msg7,msg7len
+               jmp menu
 
 ;--------------------------------------------------**COPY**----------------------------------------------------
 copy:
@@ -148,9 +169,11 @@ copy:
 ;---------------------------exactly same as type for f1--------------------------------------------------           
 
 	mov esi,str1
-	mov edi,fname1
-	add esi,5
+	mov edi,Copy	
+        mov bl,copylen 
+        call verifyCommand
 
+        mov edi,fname1
 loop1:
 	mov al,[esi]
 	cmp al,20H        ; to check for space and know its the end of file1
@@ -182,6 +205,8 @@ cpy:
 
         
 	fopen fname1
+        cmp rax,-1H                     ; if negative implies file does not exist
+        jle error
 	mov [fhandle1],rax
 	fread [fhandle1],buff1,blen1
         dec rax
@@ -192,6 +217,8 @@ cpy:
 	
         ;-------------  display initial contents of file2 ---------------------------
         fopen fname2 
+        cmp rax,-1H                     ; if negative implies file does not exist
+        jle error
 	mov [fhandle2],rax              ; rax stores int value that holds the ID of file, which is dq in size
         ShowContents [fhandle2],buff2,blen2,[flen1]
         
@@ -215,8 +242,12 @@ delete:
 	input str1,20
 
 	mov esi,str1
-	mov edi,fname1	
-	add esi,7
+	mov edi,Del	
+        mov bl,delLen 
+        call verifyCommand
+
+        mov edi,fname1
+  
 loop3:                    ; copy str1 to fname1
 	mov al,[esi]
 	cmp al,0ah
@@ -227,7 +258,11 @@ loop3:                    ; copy str1 to fname1
 	inc edi
 	jmp loop3
 
-	del:
+        del:
+	fopen fname1
+        cmp rax,-1H                     ; if negative implies file does not exist
+        jle notPresent
+	
 	mov byte[edi],0
 
 	mov rax,87
@@ -235,10 +270,32 @@ loop3:                    ; copy str1 to fname1
 	syscall
 
 	display msg6,msg6len
-jmp menu
+        jmp menu
+
+notPresent:
+     
+	display msg9,msg9len
+        jmp menu
 ;--------------------------------------------------------------------------------------------------------------
 exit:
  mov rax,60
  mov rdi,0
  syscall
 
+verifyCommand:
+   
+ check:
+       mov al,[esi]
+       cmp al,[edi]
+       jne Error
+       inc edi
+       inc esi
+       dec bl
+       jnz check
+       je done
+ Error:
+      display msg8,msg8len
+      jmp menu
+ done:
+
+ret
