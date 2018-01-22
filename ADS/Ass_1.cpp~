@@ -1,0 +1,241 @@
+//============================================================================
+// Name        : Ass_1.cpp
+// Author      :
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+class Tnode {
+  Tnode *left,*right;
+  int data;
+public:
+  Tnode(int d) {
+	  left=NULL;
+	  right=NULL;
+	  data=d;
+  }
+  friend class BinTree;
+};
+
+class BinTree {
+	Tnode *root;
+public:
+	BinTree() {
+		root=NULL;
+	}
+void create();
+Tnode* display();
+Tnode* preOrder(Tnode *temp);
+Tnode* postOrder(Tnode *temp);
+Tnode* inOrder(Tnode *temp);
+Tnode* clone(Tnode *temp);
+BinTree operator=(BinTree* src);
+Tnode * erase(Tnode*) ;
+void del();
+Tnode* copy();
+};
+
+Tnode* BinTree :: copy() {
+	Tnode * ptr1,*ptr2;
+	queue <Tnode*> q;
+	if(root!=NULL)
+       ptr1=root;
+	else
+		cout<<"Empty tree";
+	q.push(ptr1);
+	while(ptr1!=NULL) {
+		if(ptr1->left !=NULL)
+			q.push(ptr1->left);
+		if(ptr1->right !=NULL)
+			q.push(ptr1->right);
+		ptr1=ptr1->left;
+	}
+	while(q.empty()==0){
+
+		ptr2=q.pop();
+        if(ptr2->left ==NULL) {
+        	ptr2=ptr2->left;
+        }
+        else if(ptr2->right==NULL) {
+        	ptr2=ptr2->right;
+        }
+	}
+
+}
+
+void BinTree:: del() {
+	erase(root);
+}
+Tnode * BinTree:: erase(Tnode * temp) {
+	if(temp->left!=NULL){
+		erase(temp->left);
+	}
+	if(temp->right!=NULL){
+		erase(temp->right);
+	}
+	delete temp;
+}
+void BinTree::create() {
+	Tnode *ptr,*temp; //local pointer to Tnode
+	int d;
+	char ch;
+	do{
+	cout<<"\nEnter data node :";
+	cin>>d;
+	temp=new Tnode(d);
+    if(root==NULL){
+		root=temp;
+    }
+	else {
+	      ptr=root;
+		  while(1) {
+			  cout<<"Left or right from : "<<ptr->data<<" l/r";
+		      cin>>ch;
+		      if(ch=='l'){
+		    	  if(ptr->left==NULL){
+		    		  ptr->left=temp;
+		    	      break;
+		    	  }
+		    	  else
+		    		  ptr=ptr->left;
+
+		      }
+		      else if(ch=='r'){
+		      	   if(ptr->right==NULL){
+		      		   ptr->right=temp;
+		      	       break;
+		      	   }
+		      	   else
+		      		   ptr=ptr->right;
+		       }
+		      else
+		    	  cout<<"\nIncorrect choice";
+		  }
+
+	}
+    cout<<"Add another node?";
+    cin>>ch;
+   }while(ch=='y');
+}
+Tnode* BinTree::preOrder(Tnode *temp) {
+  if(temp!=NULL) {
+	  cout<<temp->data<<" ";
+      preOrder(temp->left);
+      preOrder(temp->right);
+      return NULL;
+  }
+  else {
+	  return NULL;
+  }
+}
+Tnode* BinTree::postOrder(Tnode *temp) {
+  if(temp!=NULL) {
+
+      postOrder(temp->left);
+      postOrder(temp->right);
+	  cout<<temp->data<<" ";
+      return NULL;
+  }
+  else {
+	  return NULL;
+  }
+}
+Tnode* BinTree::inOrder(Tnode *temp) {
+  if(temp!=NULL) {
+
+      inOrder(temp->left);
+      cout<<temp->data<<" ";
+      inOrder(temp->right);
+      return NULL;
+  }
+  else {
+	  return NULL;
+  }
+}
+Tnode* BinTree::display() {
+char ch;
+int choice;
+do{
+
+	cout<<"2.Display with Pre-order\n3.Display with Post-order";
+    cout<<"\n4.Display with In-order";
+    cin>>choice;
+    switch(choice) {
+         case 1:return preOrder(this->root);
+                cout<<"\n";
+                break;
+         case 2:return postOrder(this->root);
+                cout<<"\n";
+                break;
+         case 3:return inOrder(this->root);
+                cout<<"\n";
+                break;
+         default: cout<<"Incorrect choice"; break;
+    }
+    cout<<"DO you want to display differently? y/n";
+    cin>>ch;
+}while(ch=='y');
+  return NULL;
+}
+
+Tnode * BinTree:: clone(Tnode *temp) {
+	if(temp==NULL) {
+		return NULL;
+	}
+	else {
+		Tnode * newNode;
+		newNode=new Tnode(temp->data);
+		newNode->left=clone(temp->left);
+		newNode->right=clone(temp->right);
+		return newNode;
+	}
+}
+BinTree BinTree :: operator=(BinTree *src) {
+    if(src->root==NULL) {
+        cout<<"Sorry tree is empty";
+        return *src;
+    }
+    else {
+    	BinTree copy;
+    	copy=new BinTree();
+    	copy.root=clone(src->root);
+    	cout<<"* at copy"<<copy.root<<endl;
+    	cout<<"* at src"<<src->root<<endl;
+    	return copy;
+    }
+
+}
+
+int main() {
+
+	BinTree l1,l4;
+
+	char ch;
+	int choice;
+	do{
+	cout<<"\nChoose operation:\n1.Accept tree\n2.Display";
+	cout<<"\n3.Copy tree to another location\n4.Delete original tree";
+	cin>>choice;
+	switch(choice) {
+	case 1:l1.create();
+	       break;
+	case 2:l1.display();
+	       break;
+	case 3:l4=l1;
+	       l4.display();
+	       break;
+	case 4:l1.del();
+	       cout<<"\nOriginal Tree deleted";
+	       break;
+	default:cout<<"Re-enter values";
+	}
+	cout<<"\nDo you want to continue? y/n";
+	cin>>ch;
+	}while(ch=='y');
+	return 0;
+}

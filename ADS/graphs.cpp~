@@ -1,0 +1,245 @@
+//============================================================================
+// Name        : graphs.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+#include <stack>
+#include <queue>
+#include <iostream>
+#define max 10
+using namespace std;
+
+class list {
+	list * next ;
+	int node;
+public:
+
+	list() {
+		next=NULL;
+	    node = 0;
+	}
+	void accept(int node);
+	void display();
+friend class graph;
+};
+
+class graph {
+int adMax[max][max],edges,vertices,visited[max];
+list adList[max];
+public:
+graph() {
+	for (int i=0;i<max;i++) {
+		for(int j=0;j<max;j++) {
+		  adMax[i][j]=0;
+
+		}
+	}
+	edges=0,vertices=0;
+
+	for(int j=0;j<max;j++) {
+		  visited[j]=0;
+	}
+}
+
+void in_adMax(int r,int c);
+void in_adList();
+void readGraph();
+void display_adMax();
+void display_adList();
+void resetVisited();   // make visited[]=0
+void bfs_adList();
+void dfs_adList();
+void BFSadlist();
+void DFSadlist(int start)
+//bfs is left
+};
+void graph::dfs_adList() {
+	list * trav ;
+int flag=1;
+			trav=&adList[0];
+			while(flag!=vertices) {
+				int j=0;
+				while(adList[j].node!=trav->node) {
+					j++;
+				}
+				if(visited[j]==0) {
+				    visited[j]=1;
+				    cout<<adList[j].node<<" ";
+				    flag++;
+			        trav=&adList[j];
+				}
+				else {
+					trav=trav->next;
+				}
+				
+			}
+
+		cout<<endl;
+
+}
+void graph::bfs_adList() {
+	list * trav ;
+	for(int i=0;i<vertices;i++) {
+		trav=&adList[i];
+		while(trav!=NULL) {
+			int j=0;
+			while(adList[j].node!=trav->node) {
+				j++;
+			}
+			if(visited[j]==0) {
+			    visited[j]=1;
+			    cout<<adList[j].node<<" ";
+			}
+			trav=trav->next;
+		}
+	}
+	cout<<endl;
+}
+
+void graph :: BFSadlist()
+{
+	cout<<"\n\nBFS:";
+	queue<int> q;
+	int start=0;
+
+	for(int i=0;i<vertices;i++)
+		visited[i]=0;
+
+	visited[start]=1;
+	q.push(start);
+
+	for(int i=0; i<vertices; i++)
+	{
+		List *ptr;
+		ptr=adlist[i].next;
+		while(ptr!=NULL)
+		{
+			if(visited[ptr->node]==0)
+			{
+				q.push(ptr->node);
+				visited[ptr->node]=1;
+			}
+			ptr=ptr->next;
+		}
+	}
+	while(!q.empty())
+	{
+		int d=q.front();
+		q.pop();
+		cout<<" "<<d;
+	}
+}
+
+
+void graph :: DFSadlist(int start)
+{
+
+	cout<<" "<<start;
+	visited[start]=1;
+
+	List *ptr=adlist[start].next;
+	while(ptr!=NULL)
+	{
+		if(visited[ptr->node]==0)
+		{
+			visited[ptr->node]=1;
+			DFSadlist(ptr->node);
+		}
+	ptr=ptr->next;
+	}
+}
+void list::accept(int data) {
+	node=data;
+}
+void graph :: in_adMax(int r,int c) {
+
+		adMax[r][c]=1;
+		adMax[c][r]=1;
+
+
+}
+void graph:: readGraph() {
+    int r,c;
+	cout<<"\nEnter the number of vertices in the graph :\n";
+	cin>>vertices;
+    cout<<"\nEnter the number of edges in the graph :\n";
+	cin>>edges;
+	for(int i=0;i<edges;i++) {
+		cout<<"Enter the vertices joining of edge number :"<<'e'<<i+1<<endl;
+		cout<<"Starting vertex : ";
+		cin>>r;
+		cout<<"Ending vertex : ";
+		cin>>c;
+		in_adMax(r-1,c-1);
+	}
+
+}
+void graph::in_adList() {
+    list *temp,*ptr;
+    for(int i=0;i<vertices;i++) {
+    	   cout<<"\nEnter data for vertex :"<<i+1;
+           cin>>adList[i].node;
+    }
+	for(int i=0;i<vertices;i++) {
+		ptr=&adList[i];
+		for(int j=0;j<vertices;j++){
+
+			if(adMax[i][j] == 1) {
+			   temp=new list();
+               temp->accept(adList[j].node);
+               ptr->next=temp;
+               ptr=ptr->next;
+			}
+		}
+	}
+}
+void graph :: display_adList() {
+	list *ptr;
+	cout<<"List is: "<<endl;
+	for(int i=0;i<vertices;i++) {
+	    ptr=&adList[i];
+		while(ptr!=NULL) {
+	    	cout<<ptr->node<<" ";
+	    	ptr=ptr->next;
+	    }
+		cout<<endl;
+	}
+}
+void graph :: display_adMax() {
+	cout<<"Adjacency matrix is :"<<endl;
+	for(int i=0;i<vertices;i++) {
+		for(int j=0;j<vertices;j++) {
+			cout<<adMax[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+int main() {
+    int choice;
+    char ch;
+    graph g1;
+    do {
+    	cout<<"Enter operation: \n\n1.Accept graph\n2.Display AdMax\n3.Accept node data"
+    		   "\n4.Display links";
+    	cin>>choice;
+    	switch(choice) {
+    	case 1:g1.readGraph();
+    		   break;
+    	case 2:g1.display_adMax();
+    		   break;
+    	case 3:g1.in_adList();
+    	       break;
+    	case 4:g1.display_adList();
+    	       break;
+    	case 5:g1.bfs_adList();
+    	       break;
+    	case 6:g1.dfs_adList();break;
+    	default:cout<<"\nIncorrect choice, please re-enter";
+    	}
+    	cout<<"Do you wish to continue? y/n";
+    	cin>>ch;
+    }while(ch=='y');
+	return 0;
+}
