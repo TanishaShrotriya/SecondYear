@@ -1,0 +1,30 @@
+section .data 
+arr db 10,15,-2,0FFH,0E2H
+
+section .text
+
+global _start
+_start:
+
+mov dl,0      ;couter for array size
+mov bl,0      ;+ve counter
+mov cl,0      ;-ve counter
+mov esi,arr   ;create pointer to start of array
+
+again:
+ mov al,[esi]    ;equivalent to ds:[esi]
+add al,0
+js negcnt              ;negcnt=label
+inc bl
+jmp next
+negcnt :
+  inc cl
+next:
+  inc dl            ;smallest size=byte so inc by byte by default
+inc esi
+cmp dl,05
+jl again
+
+mov rax,60
+mov rdi,0
+syscall

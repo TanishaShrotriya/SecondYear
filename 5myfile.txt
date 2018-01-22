@@ -1,0 +1,7 @@
+Hello
+This is the file to be read.
+We want to keep track of number of
+spaces and number of lines
+And search for any character specified by the user
+Thank You!!
+
